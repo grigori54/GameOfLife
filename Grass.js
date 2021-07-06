@@ -3,6 +3,7 @@ class Grass extends livinlife {
         super(x, y)
         this.multiply = 0;
     }
+    
 
     mul() {
         this.multiply++;

@@ -1,4 +1,4 @@
-function generator(matLen, gr, grEat, pr, hun, vir) {
+function generator(matLen, gr, grEat,pr,hun,vir) {
     let matrix = [];
     for (let i = 0; i < matLen; i++) {
         matrix[i] = [];
@@ -39,21 +39,21 @@ function generator(matLen, gr, grEat, pr, hun, vir) {
             if (matrix[x][y] == 0) {
                 matrix[x][y] = 5;
             }
-        }
-        return matrix;
     }
+    return matrix;
+}
 }
 
 let side = 20;
 
-let matrix = generator(15, 20, 15, 20, 10, 3);
+let matrix = generator(15, 30, 20, 10, 10,3);
 var grassArr = []
 var grassEaterArr = []
 var predatorArr = []
 var hunterArr = []
 var virusArr = []
 function setup() {
-    frameRate(1);
+    frameRate(6);
     createCanvas(matrix[0].length * side, matrix.length * side);
     background('#acacac');
 
@@ -125,10 +125,10 @@ function draw() {
         predatorArr[i].mul();
         predatorArr[i].eat();
     }
-
+    
     for (var i in hunterArr) {
         hunterArr[i].move();
-        if (predatorArr.length > 5) {
+        if(predatorArr.length > 5) {
             hunterArr[i].eat();
         }
     }
