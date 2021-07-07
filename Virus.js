@@ -5,6 +5,7 @@ class Virus extends livinlife {
         this.multiply = 0
 
     }
+    
     eat() {
         var emptyCells = this.chooseCell(2)
         var newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]

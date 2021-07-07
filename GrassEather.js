@@ -93,7 +93,6 @@ class GrassEater extends livinlife {
         } else if (newCell1) {
             var newX = newCell1[0]
             var newY = newCell1[1]
-
             matrix[newY][newX] = matrix[this.y][this.x]
             matrix[this.y][this.x] = 0
             this.x = newX
@@ -104,7 +103,6 @@ class GrassEater extends livinlife {
             this.move()
         }
     }
-
     die() {
         matrix[this.y][this.x] = 0;
         for (var i in grassEaterArr) {

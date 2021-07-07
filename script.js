@@ -1,4 +1,4 @@
-function generator(matLen, gr, grEat,pr,hun,vir) {
+function generator(matLen, gr, grEat,pr,hun,vir,sun) {
     let matrix = [];
     for (let i = 0; i < matLen; i++) {
         matrix[i] = [];
@@ -40,20 +40,28 @@ function generator(matLen, gr, grEat,pr,hun,vir) {
                 matrix[x][y] = 5;
             }
     }
+    for (let i = 0; i < sun; i++) {
+        let x = Math.floor(Math.random() * matLen);
+        let y = Math.floor(Math.random() * matLen);
+        if (matrix[x][y] == 0) {
+            matrix[x][y] = 6;
+        }
+    }
     return matrix;
 }
 }
 
 let side = 20;
 
-let matrix = generator(15, 30, 20, 10, 10,3);
+let matrix = generator(15, 30, 20, 10, 10,3,5);
 var grassArr = []
 var grassEaterArr = []
 var predatorArr = []
 var hunterArr = []
 var virusArr = []
+var sunkarr = []
 function setup() {
-    frameRate(6);
+    frameRate(2);
     createCanvas(matrix[0].length * side, matrix.length * side);
     background('#acacac');
 
@@ -76,6 +84,14 @@ function setup() {
             } else if (matrix[y][x] == 5) {
                 var gr = new Virus(x, y)
                 virusArr.push(gr)
+            }
+            else if (matrix[y][x] == 5) {
+                var gr = new Virus(x, y)
+                virusArr.push(gr)
+            }
+            else if (matrix[y][x] == 6) {
+                var gr = new sunk(x, y)
+                sunkarr.push(gr)
             }
         }
     }
@@ -110,6 +126,10 @@ function draw() {
                 fill("#EF2E05");
                 rect(x * side, y * side, side, side);
             }
+            else if (matrix[y][x] == 6) {
+                fill("#C6D594");
+                rect(x * side, y * side, side, side);
+            }
         }
     }
 
@@ -125,6 +145,7 @@ function draw() {
         predatorArr[i].mul();
         predatorArr[i].eat();
     }
+    console.log(predatorArr.length);
     
     for (var i in hunterArr) {
         hunterArr[i].move();
@@ -136,5 +157,7 @@ function draw() {
         // virusArr[i].mul();
         // virusArr[i].eat();
     }
-
+    for (var i in sunkarr) {
+       
+    }
 }
