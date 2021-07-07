@@ -61,7 +61,7 @@ var hunterArr = []
 var virusArr = []
 var sunkarr = []
 function setup() {
-    frameRate(2);
+    frameRate(7);
     createCanvas(matrix[0].length * side, matrix.length * side);
     background('#acacac');
 
@@ -127,7 +127,7 @@ function draw() {
                 rect(x * side, y * side, side, side);
             }
             else if (matrix[y][x] == 6) {
-                fill("#C6D594");
+                fill("#A5A85B");
                 rect(x * side, y * side, side, side);
             }
         }
