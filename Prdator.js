@@ -6,7 +6,7 @@ class Predator extends livinlife {
         this.directions = [];
         this.energy = 15
     }
-    
+
     chooseCell(character) {
         this.getNewCoordinates()
         return super.chooseCell(character);

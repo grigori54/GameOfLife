@@ -5,7 +5,7 @@ class Hunter extends livinlife {
         this.multiply = 0
         this.directions = [];
     }
-  
+
     chooseCell(character) {
         this.getNewCoordinates()
         return super.chooseCell(character);
@@ -46,7 +46,7 @@ class Hunter extends livinlife {
                     predatorArr.splice(i, 1)
                     break
                 }
-            
+
             }
             if (newCell1) {
                 var newX = newCell1[0]

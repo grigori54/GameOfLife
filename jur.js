@@ -1,9 +1,9 @@
-class Grass extends livinlife {
+class jur extends livinlife {
     constructor(x, y) {
         super(x, y)
         this.multiply = 0;
     }
-    
+
 
     mul() {
         this.multiply++;
@@ -15,8 +15,8 @@ class Grass extends livinlife {
             var newY = newCell[1];
             matrix[newY][newX] = 1;
 
-            var newjur = new Grass(newX, newY, 1);
-            grassArr.push(newGrass);
+            var newjur = new jur(newX, newY, 7);
+            jurArr.push(newjur);
             this.multiply = 0;
         }
     }

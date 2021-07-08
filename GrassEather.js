@@ -20,7 +20,7 @@ class GrassEater extends livinlife {
             this.multiply = 0;
         }
     }
-    
+
     chooseCell(character) {
         this.getNewCoordinates()
         return super.chooseCell(character);
@@ -53,6 +53,9 @@ class GrassEater extends livinlife {
         var emptyCells1 = this.chooseCell(5)
         var newCell1 = emptyCells1[Math.floor(Math.random() * emptyCells1.length)]
 
+        var emptyCells2 = this.chooseCell(7)
+        var newCell2 = emptyCells2[Math.floor(Math.random() * emptyCells2.length)]
+
         if (newCell) {
             this.energy++
             var newX = newCell[0]
@@ -76,10 +79,20 @@ class GrassEater extends livinlife {
             this.x = newX
             this.y = newY
             this.die()
+
         }
-        else {
+        else if (newCell2) {
+            var newX = newCell2[0]
+            var newY = newCell2[1]
+            matrix[newY][newX] = matrix[this.y][this.x]
+            matrix[this.y][this.x] = 0
+            this.x = newX
+            this.y = newY
+        } else {
             this.move()
         }
+
+
     }
     die() {
         matrix[this.y][this.x] = 0;
@@ -91,3 +104,8 @@ class GrassEater extends livinlife {
         }
     }
 }
+
+
+
+
+
