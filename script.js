@@ -1,4 +1,4 @@
-function generator(matLen, gr, grEat,pr,hun,vir,sun) {
+function generator(matLen, gr, grEat,pr,hun,vir,sun,jr) {
     let matrix = [];
     for (let i = 0; i < matLen; i++) {
         matrix[i] = [];
@@ -60,6 +60,7 @@ var predatorArr = []
 var hunterArr = []
 var virusArr = []
 var sunkarr = []
+var jurArr = []
 function setup() {
     frameRate(7);
     createCanvas(matrix[0].length * side, matrix.length * side);
@@ -92,6 +93,10 @@ function setup() {
             else if (matrix[y][x] == 6) {
                 var gr = new sunk(x, y)
                 sunkarr.push(gr)
+            }
+            else if (matrix[y][x] == 7) {
+                var gr = new jur(x, y)
+                jurArr.push(gr)
             }
         }
     }
@@ -130,6 +135,10 @@ function draw() {
                 fill("#A5A85B");
                 rect(x * side, y * side, side, side);
             }
+            else if (matrix[y][x] == 7) {
+                fill("#0898F7");
+                rect(x * side, y * side, side, side);
+            }
         }
     }
 
@@ -159,5 +168,8 @@ function draw() {
     }
     for (var i in sunkarr) {
        
+    }
+    for (var i in jurArr) {
+        jurArr[i].mul()
     }
 }
