@@ -60,7 +60,7 @@ function generator(matLen, gr, grEat, pr, hun, vir, sun, jr) {
 
 let side = 20;
 
-let matrix = generator(20, 190, 120, 50, 50, 30, 50, 210);
+let matrix = generator(20, 20, 40, 20, 20, 20, 20, 20);
 var grassArr = []
 var grassEaterArr = []
 var predatorArr = []
@@ -69,7 +69,7 @@ var virusArr = []
 var sunkarr = []
 var jurArr = []
 function setup() {
-    frameRate(2);
+    frameRate(8);
     createCanvas(matrix[0].length * side, matrix.length * side);
     background('#acacac');
 

@@ -10,7 +10,8 @@ class GrassEater extends livinlife {
         var emptyCells = super.chooseCell(0);
         var newCell = random(emptyCells);
 
-        if (newCell && this.multiply >= 10) {
+        if (newCell && this.multiply >= 10,
+            this.energy >= 10) {
             var newX = newCell[0];
             var newY = newCell[1];
             matrix[newY][newX] = 2;
