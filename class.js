@@ -1,4 +1,4 @@
-modul.export = class livinlife {
+module.export = class livinlife {
     constructor(x, y) {
         this.x = x;
         this.y = y;

@@ -8,16 +8,16 @@ app.use(express.static("."))
 app.get("/", function (req, res) {
     res.redirect("index.html")
 })
-matrix = [];
+var matrix = [];
 var Grass = require("./Grass.js")
 var GrassEater = require("./Grasseather.js")
 var Predator = require("./Prdator.js")
-var Hunter =require("./Hunter.js")
-var jur =require("./jur.js")
-var sunk =require("./Sunk.js")
-var Virus =require("./Virus.js")
+var Hunter = require("./Hunter.js")
+var jur = require("./jur.js")
+var sunk = require("./Sunk.js")
+var Virus = require("./Virus.js")
 function generator(matLen, gr, grEat, pr, hun, vir, sun, jr) {
-    
+
     for (let i = 0; i < matLen; i++) {
         matrix[i] = [];
         for (let j = 0; j < matLen; j++) {
@@ -72,10 +72,11 @@ function generator(matLen, gr, grEat, pr, hun, vir, sun, jr) {
                 matrix[x][y] = 7;
             }
         }
+        io.sockets.emit("send matrix", matrix)
         return matrix;
     }
 }
-let matrix = generator(20, 20, 0, 20, 20, 20, 20, 20);
+generator(20, 20, 20, 20, 20, 20, 20, 20);
 var grassArr = []
 var grassEaterArr = []
 var predatorArr = []
@@ -191,7 +192,7 @@ function game() {
     }
     io.sockets.emit("send matrix", matrix)
 }
-setInterval(game,1000)
-io.on("conaction" , function(socket){
+setInterval(game, 1000)
+io.on("conaction", function (socket) {
     creatobjet(matrix)
 })
