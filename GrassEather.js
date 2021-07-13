@@ -1,3 +1,5 @@
+let livinlife = require("./class.js")
+
 class GrassEater extends livinlife {
     constructor(x, y) {
         super(x, y)

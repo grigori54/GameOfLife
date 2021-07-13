@@ -1,3 +1,4 @@
+let livinlife = require("./class.js")
 class Predator extends livinlife {
 
     constructor(x, y) {
