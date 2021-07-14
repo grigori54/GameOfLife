@@ -1,5 +1,5 @@
 let livinlife = require("./class.js")
-module.export=class Hunter extends livinlife {
+module.exports=class Hunter extends livinlife {
     constructor(x, y) {
         super(x, y)
         this.energy = 8;

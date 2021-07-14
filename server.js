@@ -122,7 +122,7 @@ function creatobjet(matrix) {
     io.sockets.emit("send matrix", matrix)
 }
 
-function draw() {
+function nkarel() {
 
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
@@ -157,6 +157,11 @@ function draw() {
                 jurArr.push(gr)
             }
         }
+        setInterval(
+            function () {
+            socket.on('send matrix', nkarel)
+            },1000
+        )
     }
 }
 function game() {

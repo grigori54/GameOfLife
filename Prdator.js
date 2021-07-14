@@ -1,5 +1,5 @@
 let livinlife = require("./class.js")
-class Predator extends livinlife {
+module.exports = class Predator extends livinlife {
 
     constructor(x, y) {
         super(x, y)

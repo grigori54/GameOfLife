@@ -2,7 +2,7 @@ let livinlife = require("./class.js")
 
 
 
-module.export = class Grass extends livinlife {
+module.exports = class Grass extends livinlife {
     constructor(x, y) {
         super(x, y)
         this.multiply = 0;

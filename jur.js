@@ -1,5 +1,5 @@
 let livinlife = require("./class.js")
-module.export =class jur extends livinlife {
+module.exports =class jur extends livinlife {
     constructor(x, y) {
         super(x, y)
         this.multiply = 0;
