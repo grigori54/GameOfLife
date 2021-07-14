@@ -9,7 +9,7 @@ module.exports =class jur extends livinlife {
     mul() {
         this.multiply++;
         var emptyCells = super.chooseCell(0);
-        var newCell = random(emptyCells);
+        var newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
 
         if (newCell && this.multiply >= 10 ) {
             var newX = newCell[0];

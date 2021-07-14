@@ -2,7 +2,7 @@ var socket = io()
 let side = 30;
 function setup() {
     frameRate(8);
-    createCanvas(13 * side, 13 * side);
+    createCanvas(13 * side, 14 * side);
     background('#acacac');
 }
 function nkarel(matrix) {
