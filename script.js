@@ -1,4 +1,4 @@
-var socket = io()
+socket = io()
 let side = 30;
 function setup() {
     frameRate(8);
@@ -6,7 +6,7 @@ function setup() {
     background('#acacac');
 }
 function nkarel(matrix) {
-    
+
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
 
@@ -47,6 +47,6 @@ function nkarel(matrix) {
 }
 setInterval(
     function () {
-    socket.on('send matrix', nkarel)
-    },1000
+        socket.on('send matrix', nkarel)
+    }, 1000
 )

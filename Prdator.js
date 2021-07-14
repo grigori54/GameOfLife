@@ -16,7 +16,7 @@ module.exports = class Predator extends livinlife {
     mul() {
         this.multiply++;
         var emptyCells = this.chooseCell(0);
-        var newCell = Math.floor(Math.random() * emptyCells);
+        var newCell = emptyCells[Math.floor(Math.random() * emptyCells)];
 
         if (newCell && this.multiply >= 15) {
             var newX = newCell[0];

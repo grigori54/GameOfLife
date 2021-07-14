@@ -12,7 +12,7 @@ module.exports = class Grass extends livinlife {
     mul() {
         this.multiply++;
         var emptyCells = super.chooseCell(0);
-        var newCell = Math.floor(Math.random() * emptyCells);
+        var newCell = emptyCells[Math.floor(Math.random() * emptyCells)];
 
         if (newCell && this.multiply >= 10) {
             var newX = newCell[0];

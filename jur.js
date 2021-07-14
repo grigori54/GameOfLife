@@ -1,5 +1,5 @@
 let livinlife = require("./class.js")
-module.exports =class jur extends livinlife {
+module.exports = class jur extends livinlife {
     constructor(x, y) {
         super(x, y)
         this.multiply = 0;
@@ -11,7 +11,7 @@ module.exports =class jur extends livinlife {
         var emptyCells = super.chooseCell(0);
         var newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
 
-        if (newCell && this.multiply >= 10 ) {
+        if (newCell && this.multiply >= 10) {
             var newX = newCell[0];
             var newY = newCell[1];
             matrix[newY][newX] = 1;

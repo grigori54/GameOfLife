@@ -77,13 +77,13 @@ function generator(matLen, gr, grEat, pr, hun, vir, sun, jr) {
     }
 }
 generator(20, 20, 20, 20, 20, 20, 20, 20);
-var grassArr = []
-var grassEaterArr = []
-var predatorArr = []
-var hunterArr = []
-var virusArr = []
-var sunkarr = []
-var jurArr = []
+grassArr = []
+grassEaterArr = []
+predatorArr = []
+hunterArr = []
+virusArr = []
+sunkarr = []
+jurArr = []
 function creatobjet(matrix) {
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
@@ -122,48 +122,9 @@ function creatobjet(matrix) {
     io.sockets.emit("send matrix", matrix)
 }
 
-function nkarel() {
 
-    for (var y = 0; y < matrix.length; y++) {
-        for (var x = 0; x < matrix[y].length; x++) {
 
-            if (matrix[y][x] == 1) {
-                var gr = new Grass(x, y)
-                grassArr.push(gr)
-            } else if (matrix[y][x] == 2) {
-                var gr = new GrassEater(x, y)
-                grassEaterArr.push(gr)
-            }
-            else if (matrix[y][x] == 3) {
-                var gr = new Predator(x, y)
-                predatorArr.push(gr)
-            } else if (matrix[y][x] == 4) {
-                var gr = new Hunter(x, y)
-                hunterArr.push(gr)
-            } else if (matrix[y][x] == 5) {
-                var gr = new Virus(x, y)
-                virusArr.push(gr)
-            }
-            else if (matrix[y][x] == 5) {
-                var gr = new Virus(x, y)
-                virusArr.push(gr)
-            }
-            else if (matrix[y][x] == 6) {
-                var gr = new sunk(x, y)
-                sunkarr.push(gr)
-            }
-            else if (matrix[y][x] == 7) {
-                var gr = new jur(x, y)
-                jurArr.push(gr)
-            }
-        }
-        setInterval(
-            function nkarel() {
-            socket.on('send matrix', nkarel)
-            },1000
-        )
-    }
-}
+
 function game() {
     for (var i in grassArr) {
         grassArr[i].mul()
@@ -197,7 +158,10 @@ function game() {
     }
     io.sockets.emit("send matrix", matrix)
 }
+
 setInterval(game, 1000)
+
+
 io.on("conaction", function (socket) {
     creatobjet(matrix)
 })
