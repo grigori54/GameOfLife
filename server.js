@@ -1,14 +1,15 @@
-let express = require("express")
-let app = express()
-let server = require('http').Server(app)
-let io = require("socket.io")(server)
-server.listen(3000)
+let express = require("express");
+let app = express();
+let server = require('http').Server(app);
+let io = require("socket.io")(server);
+server.listen(3000);
 
-app.use(express.static("."))
+app.use(express.static("."));
 app.get("/", function (req, res) {
-    res.redirect("index.html")
+    res.redirect("index.html");
 })
-var matrix = [];
+
+matrix = [];
 var Grass = require("./Grass.js")
 var GrassEater = require("./Grasseather.js")
 var Predator = require("./Prdator.js")
@@ -74,17 +75,25 @@ function generator(matLen, gr, grEat, pr, hun, vir, sun, jr) {
         }
         io.sockets.emit("send matrix", matrix)
         return matrix;
+        
     }
+    
 }
-generator(20, 20, 20, 20, 20, 20, 20, 20);
-grassArr = []
-grassEaterArr = []
-predatorArr = []
-hunterArr = []
-virusArr = []
-sunkarr = []
-jurArr = []
+
+
+grassArr = [];
+grassEaterArr = [];
+predatorArr = [];
+hunterArr = [];
+virusArr = [];
+sunkarr = [];
+jurArr = [];
+
+matrix = generator(20, 20, 20, 20, 20, 20, 20, 20);
+
 function creatobjet(matrix) {
+
+    
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
 
@@ -119,14 +128,18 @@ function creatobjet(matrix) {
             }
         }
     }
-    io.sockets.emit("send matrix", matrix)
+    io.sockets.emit("send matrix", matrix);
+   
 }
 
 
 
 
 function game() {
+
+    
     for (var i in grassArr) {
+
         grassArr[i].mul()
     }
 
@@ -138,7 +151,7 @@ function game() {
         predatorArr[i].mul();
         predatorArr[i].eat();
     }
-    console.log(predatorArr.length);
+   
 
     for (var i in hunterArr) {
         hunterArr[i].move();
@@ -156,12 +169,15 @@ function game() {
     for (var i in jurArr) {
         jurArr[i].mul()
     }
+    
     io.sockets.emit("send matrix", matrix)
+    
 }
 
 setInterval(game, 1000)
 
 
-io.on("conaction", function (socket) {
+io.on('connection', function (socket) {
+    
     creatobjet(matrix)
 })

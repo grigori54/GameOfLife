@@ -10,6 +10,8 @@ module.exports = class Grass extends livinlife {
 
 
     mul() {
+  
+        
         this.multiply++;
         var emptyCells = super.chooseCell(0);
         var newCell = emptyCells[Math.floor(Math.random() * emptyCells)];
