@@ -1,3 +1,4 @@
+fs = require('fs');
 let express = require("express");
 let app = express();
 let server = require('http').Server(app);
@@ -75,9 +76,9 @@ function generator(matLen, gr, grEat, pr, hun, vir, sun, jr) {
         }
         io.sockets.emit("send matrix", matrix)
         return matrix;
-        
+
     }
-    
+
 }
 
 
@@ -93,7 +94,7 @@ matrix = generator(20, 20, 20, 20, 20, 20, 20, 20);
 
 function creatobjet(matrix) {
 
-    
+
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
 
@@ -129,7 +130,12 @@ function creatobjet(matrix) {
         }
     }
     io.sockets.emit("send matrix", matrix);
-   
+
+    fs.writeFile('statistic.txt', "grassarr " + grassArr.length + "\nGrassEather "+grassEaterArr.length + "\nHunter "+hunterArr.length+  "\nPredator "+predatorArr.length+ "\nSunk "+sunkarr.length+ "\nVirus "+virusArr.length+ "\nJur "+jurArr.length, function (err) {
+        if (err) return console.log(err);
+        
+    });
+
 }
 
 
@@ -137,7 +143,7 @@ function creatobjet(matrix) {
 
 function game() {
 
-    
+
     for (var i in grassArr) {
 
         grassArr[i].mul()
@@ -151,7 +157,7 @@ function game() {
         predatorArr[i].mul();
         predatorArr[i].eat();
     }
-   
+
 
     for (var i in hunterArr) {
         hunterArr[i].move();
@@ -169,15 +175,16 @@ function game() {
     for (var i in jurArr) {
         jurArr[i].mul()
     }
-    
+
     io.sockets.emit("send matrix", matrix)
-    
+
 }
 
 setInterval(game, 1000)
 
 
 io.on('connection', function (socket) {
-    
+
     creatobjet(matrix)
 })
+
