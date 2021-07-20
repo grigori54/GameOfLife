@@ -1,5 +1,5 @@
-fs = require('fs');
 let express = require("express");
+let fs = require('fs');
 let app = express();
 let server = require('http').Server(app);
 let io = require("socket.io")(server);
@@ -130,61 +130,69 @@ function creatobjet(matrix) {
         }
     }
     io.sockets.emit("send matrix", matrix);
-
-    fs.writeFile('statistic.txt', "grassarr " + grassArr.length + "\nGrassEather "+grassEaterArr.length + "\nHunter "+hunterArr.length+  "\nPredator "+predatorArr.length+ "\nSunk "+sunkarr.length+ "\nVirus "+virusArr.length+ "\nJur "+jurArr.length, function (err) {
-        if (err) return console.log(err);
-        
-    });
-
-}
-
-
-
-
-function game() {
-
-
-    for (var i in grassArr) {
-
-        grassArr[i].mul()
-    }
-
-    for (var i in grassEaterArr) {
-        grassEaterArr[i].mul();
-        grassEaterArr[i].eat();
-    }
-    for (var i in predatorArr) {
-        predatorArr[i].mul();
-        predatorArr[i].eat();
-    }
+var statistics = {};
+setInterval(function () {
+    statistics.Grass = grassArr.length;
+    statistics.GrassEater = grassEaterArr.length;
+    statistics.Predator = predatorArr.length;
+    statistics.Hunter = hunterArr.length;
+    statistics.Virus = virusArr.length;
+    statistics.sunk = sunkarr.length;
+    statistics.jur = jurArr.length;
+    fs.writeFileSync("statistic.json",
+    JSON.stringify(statistics))
+},1000)
+} 
 
 
-    for (var i in hunterArr) {
-        hunterArr[i].move();
-        if (predatorArr.length > 5) {
-            hunterArr[i].eat();
+
+
+
+
+    function game() {
+
+
+        for (var i in grassArr) {
+
+            grassArr[i].mul()
         }
-    }
-    for (var i in virusArr) {
-        // virusArr[i].mul();
-        // virusArr[i].eat();
-    }
-    for (var i in sunkarr) {
+
+        for (var i in grassEaterArr) {
+            grassEaterArr[i].mul();
+            grassEaterArr[i].eat();
+        }
+        for (var i in predatorArr) {
+            predatorArr[i].mul();
+            predatorArr[i].eat();
+        }
+
+
+        for (var i in hunterArr) {
+            hunterArr[i].move();
+            if (predatorArr.length > 5) {
+                hunterArr[i].eat();
+            }
+        }
+        for (var i in virusArr) {
+            // virusArr[i].mul();
+            // virusArr[i].eat();
+        }
+        for (var i in sunkarr) {
+
+        }
+        for (var i in jurArr) {
+            jurArr[i].mul()
+        }
+
+        io.sockets.emit("send matrix", matrix)
 
     }
-    for (var i in jurArr) {
-        jurArr[i].mul()
-    }
-
-    io.sockets.emit("send matrix", matrix)
-
-}
 
 setInterval(game, 1000)
 
 
 io.on('connection', function (socket) {
 
-    creatobjet(matrix)
-})
+        creatobjet(matrix)
+    })
 

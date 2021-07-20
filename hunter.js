@@ -12,7 +12,7 @@ module.exports = class Hunter extends livinlife {
         return super.chooseCell(character);
     }
     move() {
-        var emptyCells = this.chooseCell(0)
+        var emptyCells = super.chooseCell(0)
         var newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
 
         if (newCell) {
