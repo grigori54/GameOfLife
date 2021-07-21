@@ -4,7 +4,7 @@ let app = express();
 let server = require('http').Server(app);
 let io = require("socket.io")(server);
 server.listen(3000);
-
+weath = "summer"
 app.use(express.static("."));
 app.get("/", function (req, res) {
     res.redirect("index.html");
@@ -130,6 +130,78 @@ function creatobjet(matrix) {
         }
     }
     io.sockets.emit("send matrix", matrix);
+}
+function weather(){
+    if(weath=="winter"){
+        weath="spring"
+    }
+    else if(weath=="spring"){
+        weath="summer"
+    }
+    else if(weath == "summer"){
+        weath = "autumn"
+    }
+    else if(weath == "autumn"){
+        weath = "winter"
+    }
+    console.log(weath);
+    
+    io.sockets.emit('weather',weath)
+}
+setInterval(weather,5000);
+
+
+
+
+
+
+function game() {
+
+
+    for (var i in grassArr) {
+
+        grassArr[i].mul()
+    }
+
+    for (var i in grassEaterArr) {
+        grassEaterArr[i].mul();
+        grassEaterArr[i].eat();
+    }
+    for (var i in predatorArr) {
+        predatorArr[i].mul();
+        predatorArr[i].eat();
+    }
+
+
+    for (var i in hunterArr) {
+        hunterArr[i].move();
+        if (predatorArr.length > 5) {
+            hunterArr[i].eat();
+        }
+    }
+    for (var i in virusArr) {
+        // virusArr[i].mul();
+        // virusArr[i].eat();
+    }
+    for (var i in sunkarr) {
+
+    }
+    for (var i in jurArr) {
+        jurArr[i].mul()
+    }
+
+    io.sockets.emit("send matrix", matrix)
+
+}
+
+setInterval(game, 1000)
+
+
+io.on('connection', function (socket) {
+
+    creatobjet(matrix)
+})
+
 var statistics = {};
 setInterval(function () {
     statistics.Grass = grassArr.length;
@@ -140,59 +212,6 @@ setInterval(function () {
     statistics.sunk = sunkarr.length;
     statistics.jur = jurArr.length;
     fs.writeFileSync("statistic.json",
-    JSON.stringify(statistics))
-},1000)
-} 
-
-
-
-
-
-
-    function game() {
-
-
-        for (var i in grassArr) {
-
-            grassArr[i].mul()
-        }
-
-        for (var i in grassEaterArr) {
-            grassEaterArr[i].mul();
-            grassEaterArr[i].eat();
-        }
-        for (var i in predatorArr) {
-            predatorArr[i].mul();
-            predatorArr[i].eat();
-        }
-
-
-        for (var i in hunterArr) {
-            hunterArr[i].move();
-            if (predatorArr.length > 5) {
-                hunterArr[i].eat();
-            }
-        }
-        for (var i in virusArr) {
-            // virusArr[i].mul();
-            // virusArr[i].eat();
-        }
-        for (var i in sunkarr) {
-
-        }
-        for (var i in jurArr) {
-            jurArr[i].mul()
-        }
-
-        io.sockets.emit("send matrix", matrix)
-
-    }
-
-setInterval(game, 1000)
-
-
-io.on('connection', function (socket) {
-
-        creatobjet(matrix)
-    })
+        JSON.stringify(statistics))
+}, 1000)
 
