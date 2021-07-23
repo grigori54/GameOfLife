@@ -1,7 +1,0 @@
-grassarr 2621
-GrassEather 0
-Hunter 0
-Predator 0
-Sunk 129
-Virus 55
-Jur 417

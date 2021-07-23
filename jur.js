@@ -4,8 +4,10 @@ module.exports = class jur extends livinlife {
         super(x, y)
         this.multiply = 0;
     }
-
-
+    chooseCell(character) {
+        super.getNewCoordinates()
+        return super.chooseCell(character);
+    }
     mul() {
         this.multiply++;
         var emptyCells = super.chooseCell(0);

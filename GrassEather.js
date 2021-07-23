@@ -1,5 +1,4 @@
 let livinlife = require("./class.js")
-
 module.exports = class GrassEater extends livinlife {
     constructor(x, y) {
         super(x, y)
@@ -16,19 +15,15 @@ module.exports = class GrassEater extends livinlife {
             var newX = newCell[0];
             var newY = newCell[1];
             matrix[newY][newX] = 2;
-
             var newGrass = new GrassEater(newX, newY);
             grassEaterArr.push(newGrass);
             this.multiply = 0;
         }
     }
-
     chooseCell(character) {
-        this.getNewCoordinates()
+        super.getNewCoordinates()
         return super.chooseCell(character);
     }
-
-
     move() {
         this.energy--
         var emptyCells = super.chooseCell(0)
@@ -47,7 +42,6 @@ module.exports = class GrassEater extends livinlife {
             }
         }
     }
-
     eat() {
         var emptyCells = this.chooseCell(1)
         var newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
@@ -93,8 +87,6 @@ module.exports = class GrassEater extends livinlife {
         } else {
             this.move()
         }
-
-
     }
     die() {
         matrix[this.y][this.x] = 0;

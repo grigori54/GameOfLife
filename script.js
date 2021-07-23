@@ -46,7 +46,7 @@ function nkarel(matrix) {
                 rect(x * side, y * side, side, side);
             }
             else if (matrix[y][x] == 4) {
-                fill("#CCB478");
+                fill("#E200A1");
                 rect(x * side, y * side, side, side);
             }
             else if (matrix[y][x] == 5) {

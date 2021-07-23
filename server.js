@@ -131,38 +131,29 @@ function creatobjet(matrix) {
     }
     io.sockets.emit("send matrix", matrix);
 }
-function weather(){
-    if(weath=="winter"){
-        weath="spring"
+function weather() {
+    if (weath == "winter") {
+        weath = "spring"
     }
-    else if(weath=="spring"){
-        weath="summer"
+    else if (weath == "spring") {
+        weath = "summer"
     }
-    else if(weath == "summer"){
+    else if (weath == "summer") {
         weath = "autumn"
     }
-    else if(weath == "autumn"){
+    else if (weath == "autumn") {
         weath = "winter"
     }
     console.log(weath);
-    
-    io.sockets.emit('weather',weath)
+
+    io.sockets.emit('weather', weath)
 }
-setInterval(weather,5000);
-
-
-
-
-
-
+setInterval(weather, 5000);
 function game() {
-
-
     for (var i in grassArr) {
 
         grassArr[i].mul()
     }
-
     for (var i in grassEaterArr) {
         grassEaterArr[i].mul();
         grassEaterArr[i].eat();
@@ -171,13 +162,16 @@ function game() {
         predatorArr[i].mul();
         predatorArr[i].eat();
     }
-
-
     for (var i in hunterArr) {
         hunterArr[i].move();
+        hunterArr[i].eatsunk();
+
+        
         if (predatorArr.length > 5) {
-            hunterArr[i].eat();
+            hunterArr[i].eatpred();
+
         }
+
     }
     for (var i in virusArr) {
         // virusArr[i].mul();
@@ -189,19 +183,13 @@ function game() {
     for (var i in jurArr) {
         jurArr[i].mul()
     }
-
     io.sockets.emit("send matrix", matrix)
-
 }
-
 setInterval(game, 1000)
-
-
 io.on('connection', function (socket) {
 
     creatobjet(matrix)
 })
-
 var statistics = {};
 setInterval(function () {
     statistics.Grass = grassArr.length;
@@ -214,4 +202,3 @@ setInterval(function () {
     fs.writeFileSync("statistic.json",
         JSON.stringify(statistics))
 }, 1000)
-

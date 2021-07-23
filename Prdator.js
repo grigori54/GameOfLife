@@ -1,6 +1,5 @@
 let livinlife = require("./class.js")
 module.exports = class Predator extends livinlife {
-
     constructor(x, y) {
         super(x, y)
         this.multiply = 0
@@ -9,7 +8,7 @@ module.exports = class Predator extends livinlife {
     }
 
     chooseCell(character) {
-        this.getNewCoordinates()
+        super.getNewCoordinates()
         return super.chooseCell(character);
     }
 

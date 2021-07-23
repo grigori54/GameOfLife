@@ -6,7 +6,10 @@ module.exports = class Virus extends livinlife {
         this.multiply = 0
 
     }
-
+    chooseCell(character) {
+        super.getNewCoordinates()
+        return super.chooseCell(character);
+    }
     eat() {
         var emptyCells = super.chooseCell(2)
         var newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]

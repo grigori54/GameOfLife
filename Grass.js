@@ -1,17 +1,10 @@
 let livinlife = require("./class.js")
-
-
-
 module.exports = class Grass extends livinlife {
     constructor(x, y) {
         super(x, y)
         this.multiply = 0;
     }
-
-
     mul() {
-  
-        
         this.multiply++;
         var emptyCells = super.chooseCell(0);
         var newCell = emptyCells[Math.floor(Math.random() * emptyCells)];
@@ -26,8 +19,5 @@ module.exports = class Grass extends livinlife {
             this.multiply = 0;
         }
     }
-
-
-
 }
 

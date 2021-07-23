@@ -6,9 +6,8 @@ module.exports = class Hunter extends livinlife {
         this.multiply = 0
         this.directions = [];
     }
-
     chooseCell(character) {
-        this.getNewCoordinates()
+        super.getNewCoordinates()
         return super.chooseCell(character);
     }
     move() {
@@ -25,14 +24,10 @@ module.exports = class Hunter extends livinlife {
             this.x = newX
             this.y = newY
         }
-
     }
-    eat() {
+    eatpred() {
         var emptyCells = this.chooseCell(3)
         var newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
-
-        var emptyCells1 = this.chooseCell(6)
-        var newCell1 = emptyCells1[Math.floor(Math.random() * emptyCells1.length)]
 
         if (newCell) {
             var newX = newCell[0]
@@ -49,27 +44,34 @@ module.exports = class Hunter extends livinlife {
                 }
 
             }
-            if (newCell1) {
-                var newX = newCell1[0]
-                var newY = newCell1[1]
-                matrix[newY][newX] = matrix[this.y][this.x]
-                matrix[this.y][this.x] = 0
-                this.x = newX
-                this.y = newY
-                this.die()
-            } else {
-
-            }
-
-
         } else {
             this.move()
         }
     }
+    eatsunk() {
+        var emptyCells1 = this.chooseCell(6)
+        var newCell1 = emptyCells1[Math.floor(Math.random() * emptyCells1.length)]
+        if (newCell1) {
+            console.log(11112222);
+            var newX = newCell1[0]
+            var newY = newCell1[1]
+            matrix[newY][newX] = matrix[this.y][this.x]
+            matrix[this.y][this.x] = 0
+            this.x = newX
+            this.y = newY
+            for (var i in sunkarr) {
+                if (newX == sunkarr[i].x && newY == sunkarr[i].y) {
+                    sunkarr.splice(i, 1)
+                    this.die()
+                }
+                else {
+                    this.die()
+                }
+                break
+            }
 
-
-
-
+        }
+    }
     die() {
         matrix[this.y][this.x] = 0;
         for (var i in hunterArr) {
@@ -80,3 +82,4 @@ module.exports = class Hunter extends livinlife {
         }
     }
 }
+
