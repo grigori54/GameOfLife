@@ -144,7 +144,7 @@ function weather() {
     else if (weath == "autumn") {
         weath = "winter"
     }
-    console.log(weath);
+
 
     io.sockets.emit('weather', weath)
 }
@@ -165,13 +165,8 @@ function game() {
     for (var i in hunterArr) {
         hunterArr[i].move();
         hunterArr[i].eatsunk();
-
-        
-        if (predatorArr.length > 5) {
-            hunterArr[i].eatpred();
-
-        }
-
+        if (predatorArr.length > 5);
+        hunterArr[i].eatpredator();
     }
     for (var i in virusArr) {
         // virusArr[i].mul();
@@ -198,7 +193,12 @@ setInterval(function () {
     statistics.Hunter = hunterArr.length;
     statistics.Virus = virusArr.length;
     statistics.sunk = sunkarr.length;
-    statistics.jur = jurArr.length;
     fs.writeFileSync("statistic.json",
         JSON.stringify(statistics))
-}, 1000)
+}, 500)
+io.on('addgrass',function AddGrass(){
+    console.log("es avelacnum em xot");
+    io.sockets.emit("send Matrix",matrix)
+
+    
+})

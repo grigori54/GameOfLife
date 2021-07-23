@@ -25,7 +25,7 @@ module.exports = class Hunter extends livinlife {
             this.y = newY
         }
     }
-    eatpred() {
+    eatpredator() {
         var emptyCells = this.chooseCell(3)
         var newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
 
@@ -52,7 +52,7 @@ module.exports = class Hunter extends livinlife {
         var emptyCells1 = this.chooseCell(6)
         var newCell1 = emptyCells1[Math.floor(Math.random() * emptyCells1.length)]
         if (newCell1) {
-            console.log(11112222);
+            
             var newX = newCell1[0]
             var newY = newCell1[1]
             matrix[newY][newX] = matrix[this.y][this.x]

@@ -46,7 +46,7 @@ function nkarel(matrix) {
                 rect(x * side, y * side, side, side);
             }
             else if (matrix[y][x] == 4) {
-                fill("#E200A1");
+                fill("#C89600");
                 rect(x * side, y * side, side, side);
             }
             else if (matrix[y][x] == 5) {
@@ -69,3 +69,8 @@ function nkarel(matrix) {
 }
 socket.on('send matrix', nkarel)
 
+function AddGrass(){
+    socket.emit('addgrass')
+    console.log("socket anum emit")
+   
+}
