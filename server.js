@@ -182,7 +182,12 @@ function game() {
 }
 setInterval(game, 1000)
 io.on('connection', function (socket) {
-
+    socket.on('addgrass',function AddGrass(){
+        console.log("es avelacnum em xot");
+        io.sockets.emit("send Matrix",matrix)
+    
+        
+    })
     creatobjet(matrix)
 })
 var statistics = {};
@@ -196,9 +201,4 @@ setInterval(function () {
     fs.writeFileSync("statistic.json",
         JSON.stringify(statistics))
 }, 500)
-io.on('addgrass',function AddGrass(){
-    console.log("es avelacnum em xot");
-    io.sockets.emit("send Matrix",matrix)
 
-    
-})
