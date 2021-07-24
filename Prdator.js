@@ -6,12 +6,10 @@ module.exports = class Predator extends livinlife {
         this.directions = [];
         this.energy = 15
     }
-
     chooseCell(character) {
         super.getNewCoordinates()
         return super.chooseCell(character);
     }
-
     mul() {
         this.multiply++;
         var emptyCells = super.chooseCell(0);
@@ -27,7 +25,6 @@ module.exports = class Predator extends livinlife {
             this.multiply = 0;
         }
     }
-
     move() {
         this.energy--
         var emptyCells = this.chooseCell(0)
@@ -47,7 +44,6 @@ module.exports = class Predator extends livinlife {
             }
         }
     }
-
     eat() {
         var emptyCells = this.chooseCell(2)
         var newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
@@ -72,7 +68,6 @@ module.exports = class Predator extends livinlife {
             this.move()
         }
     }
-
     die() {
         matrix[this.y][this.x] = 0;
         for (var i in predatorArr) {

@@ -90,7 +90,7 @@ virusArr = [];
 sunkarr = [];
 jurArr = [];
 
-matrix = generator(15, 20, 20, 20, 20, 20, 20, 20);
+matrix = generator(15, 30, 10, 30, 15, 15, 15, 15);
 
 function creatobjet(matrix) {
 
@@ -102,30 +102,30 @@ function creatobjet(matrix) {
                 var gr = new Grass(x, y)
                 grassArr.push(gr)
             } else if (matrix[y][x] == 2) {
-                var gr = new GrassEater(x, y)
-                grassEaterArr.push(gr)
+                var grEat = new GrassEater(x, y)
+                grassEaterArr.push(grEat)
             }
             else if (matrix[y][x] == 3) {
-                var gr = new Predator(x, y)
-                predatorArr.push(gr)
+                var pr = new Predator(x, y)
+                predatorArr.push(pr)
             } else if (matrix[y][x] == 4) {
-                var gr = new Hunter(x, y)
-                hunterArr.push(gr)
+                var hun = new Hunter(x, y)
+                hunterArr.push(hun)
             } else if (matrix[y][x] == 5) {
                 var gr = new Virus(x, y)
                 virusArr.push(gr)
             }
             else if (matrix[y][x] == 5) {
-                var gr = new Virus(x, y)
-                virusArr.push(gr)
+                var vir = new Virus(x, y)
+                virusArr.push(vir)
             }
             else if (matrix[y][x] == 6) {
-                var gr = new sunk(x, y)
-                sunkarr.push(gr)
+                var sun = new sunk(x, y)
+                sunkarr.push(sun)
             }
             else if (matrix[y][x] == 7) {
-                var gr = new jur(x, y)
-                jurArr.push(gr)
+                var jr = new jur(x, y)
+                jurArr.push(jr)
             }
         }
     }
@@ -134,6 +134,11 @@ function creatobjet(matrix) {
 function kill() {
     grassArr = [];
     grassEaterArr = []
+    hunterArr = []
+    predatorArr =[]
+    jurArr = []
+    sunkarr = []
+    virusArr = []
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
             matrix[y][x] = 0;
@@ -145,8 +150,8 @@ function kill() {
 
 function addGrass() {
     for (var i = 0; i < 7; i++) {
-    var x = Math.floor(Math.random() * matrix[0].length)
-    var y = Math.floor(Math.random() * matrix.length)
+        var x = Math.floor(Math.random() * matrix[0].length)
+        var y = Math.floor(Math.random() * matrix.length)
         if (matrix[y][x] == 0) {
             matrix[y][x] = 1
             var gr = new Grass(x, y, 1)
@@ -156,9 +161,9 @@ function addGrass() {
     io.sockets.emit("send matrix", matrix);
 }
 function addGrassEater() {
-    for (var i = 0; i < 7; i++) {   
-    var x = Math.floor(Math.random() * matrix[0].length)
-    var y = Math.floor(Math.random() * matrix.length)
+    for (var i = 0; i < 7; i++) {
+        var x = Math.floor(Math.random() * matrix[0].length)
+        var y = Math.floor(Math.random() * matrix.length)
         if (matrix[y][x] == 0) {
             matrix[y][x] = 2
             grassEaterArr.push(new GrassEater(x, y, 2))
@@ -200,9 +205,13 @@ function game() {
     }
     for (var i in hunterArr) {
         hunterArr[i].move();
-        hunterArr[i].eatsunk();
-        if (predatorArr.length > 5);
-        hunterArr[i].eatpredator();
+
+        if (predatorArr.length > 5){
+            hunterArr[i].eatpredator();
+        }
+        else {
+            hunterArr[i].eatsunk();
+        }
     }
     for (var i in virusArr) {
         // virusArr[i].mul();
@@ -230,6 +239,7 @@ setInterval(function () {
     statistics.Predator = predatorArr.length;
     statistics.Hunter = hunterArr.length;
     statistics.Virus = virusArr.length;
+    statistics.jur = jurArr.length;
     statistics.sunk = sunkarr.length;
     fs.writeFileSync("statistic.json",
         JSON.stringify(statistics))

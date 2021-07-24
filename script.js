@@ -17,12 +17,12 @@ function nkarel(matrix) {
         for (var x = 0; x < matrix[y].length; x++) {
             var obj = matrix[y][x];
             if (obj == 1) {
-                fill("green");
+                
                 if (weath == "summer") {
                     fill("green");
                 }
                 else if (weath == "autumn") {
-                    fill("dark yellow");
+                    fill("#ffd200");
                 }
                 else if (weath == "winter") {
                     fill("white");

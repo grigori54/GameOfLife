@@ -8,6 +8,5 @@ module.exports = class sunk extends livinlife {
     chooseCell(character) {
         super.getNewCoordinates()
         return super.chooseCell(character);
-    }
-    
+    }  
 }

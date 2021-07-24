@@ -38,6 +38,5 @@ module.exports = class livinlife {
             }
         }
         return found;
-
     }
 }

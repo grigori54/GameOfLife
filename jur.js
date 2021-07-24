@@ -23,7 +23,4 @@ module.exports = class jur extends livinlife {
             this.multiply = 0;
         }
     }
-
-
-
 }
